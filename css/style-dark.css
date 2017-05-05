@@ -1,0 +1,326 @@
+body.dark  {
+       background: #232323;
+}
+
+.dark .left-title h1 {
+    color: #fff;
+}
+
+.dark .giggs-list span {
+    color: #fff;
+}
+
+.dark .line-bg {
+    border-bottom: solid 1px #404040;
+}
+
+.dark .feature span {
+    color: #fff;
+}
+
+.dark .skills {
+    border: solid 1px rgb(47, 47, 47);
+    background: #191919;
+}
+
+.dark .skill-list h3 {
+    color: #fff;
+}
+
+.dark .center-title h1 {
+    color: #fff;
+}
+
+.dark .info-title {
+    color: #fff;
+}
+
+.dark .dotted-bg {
+    background: #232323;
+        border-bottom: solid 1px #404040;
+}
+
+.dark .pricing {
+    background: #191919;
+    border: solid 1px #313131;
+}
+
+.dark .pricing .price li.coin {
+    color: #fff;
+}
+
+.dark .price hr {
+    border-top: 1px solid #3e3d3d;
+}
+
+.dark .pricing h3 {
+    color: #fff;
+}
+
+
+
+.dark .giggs_button {
+    color: #fff;
+} 
+
+.dark .giggs_button:before  {
+  background: #fff;
+}
+
+
+.dark .giggs_button:hover, .giggs_button:focus, .giggs_button:active {
+  color: #000;
+}
+
+.dark .giggs_button2{
+    color: #fff;
+}
+
+.dark a.giggs_button2{
+    color: #fff;
+}
+
+.dark .giggs_button2:hover{
+    background: #fff;
+    color: #000;
+    transition:all ease 0.3s;
+}
+
+.dark .testimonial {
+    background: #191919;
+    border-top: solid 1px #313131;
+    border-left: solid 1px #313131;
+    border-right: solid 1px #313131;
+}
+
+.dark .testimonial ul hr {
+    border-top: 1px solid #3e3e3e;
+}
+
+.dark .testimonial ul li.name {
+    color: #fff;
+}
+
+.dark .blog-info {
+    border-left: solid 1px #313131;
+    border-right: solid 1px #313131;
+    background: #191919;
+}
+
+.dark .blog-box h4 {
+    color: #fff;
+}
+
+.dark .blog-box a.blog-link {
+    color: #fff;
+}
+
+.dark p {
+    color: #999999;
+}
+
+.dark .form-input {
+    background: #232323;
+    border: solid 1px #464646;
+}
+
+.dark .form-text {
+    border: solid 1px #464646;
+    background: #232323;
+}
+
+
+.dark .contact-info i {
+    color: #fff;
+    background: #232323;
+}
+
+
+.dark .resume-info {
+    border-left: 2px solid #3c3c3c;
+}
+
+.dark .resume-info:last-child {
+    border: 0;
+    padding-left: 32px;
+}
+
+.dark .nav-fixed {
+    background: #151515;
+    border: solid 1px #2f2f2f;
+    box-shadow: none;
+}
+
+
+.dark .nav-fixed ul li a {
+    color: #fff;
+}
+
+.dark .nav-fixed .logo {
+    color: #fff;
+}
+
+.dark .nav-fixed .right-menu {
+    border: solid 1px #4c4c4c;
+    color: #989898;
+}
+
+.dark .nav-fixed .responsive {
+    border: solid 1px #4c4c4c;
+    color: #989898;
+}
+
+
+.dark .sidebar-content {
+    background: #232323;
+}
+
+
+.dark .widget-categories ul li a {
+    border-bottom: 1px solid #383838;
+    color: #949494;
+}
+
+.dark .widget-title h2 {
+    color: #ffffff;
+}
+
+.dark .widget-posts .sidebar-posts .post-content p {
+    color: #999999;
+}
+
+.dark .widget-posts ul.sidebar-posts li {
+    border-bottom: 1px solid #383838;
+}
+
+.dark .profile-job {
+    color: #fff;
+}
+
+.dark .widget-tags ul li a {
+    border: solid 1px #4c4c4c;
+    color: #989898;
+}
+
+.dark .slidemenu-fixed{
+    background: #232323;
+}
+
+.dark .tweet li {
+    color: #888888;
+    border-bottom: 1px solid #3a3a3a;
+}
+
+.dark .tweet li a{
+    color: #fff;
+}
+
+.dark .widget-twitter a.twitter-account {
+    color: #ffffff;
+}
+
+
+.dark .works-info {
+    border: solid 1px rgb(51, 51, 51);
+    background: #000;
+}
+
+.dark .works-info .work-title {
+    color: #fff;
+}
+
+.dark .works-info ul.works-informations li {
+    color: #adacac;
+}
+
+.dark .blog-content h1 {
+    color: #fff;
+}
+
+.dark .blog-comments .comments li {
+    border-bottom: 1px solid #3a3a3a;
+}
+
+.dark .blog-comments .comments .comment-info h3 {
+    color: #fff;
+}
+
+.dark .blog-content li {
+    color: #fff;
+}
+
+.dark .accordion .panel-group .panel {
+    background: #000;
+}
+
+.dark .accordion .panel .panel-heading a {
+    background: #000;
+    color: #fff;
+}
+
+.dark .accordion .panel-default {
+    border-color: #545454;
+} 
+
+.dark .accordion .panel .panel-heading a i {
+    border-right: solid 1px #464646;
+}
+
+.dark blockquote {
+    color: #fff;
+}
+
+.dark .not_found h2 {
+    color: #fff;
+}
+
+
+@media screen and (max-width: 768px)
+{
+    .dark .nav-fixed ul li a {
+        color: #fff;
+    }
+    
+    .selected{
+        color: #ff423a !important;
+    }
+    
+    .dark .nav-menu {
+        background: #0a0a0a;
+    }
+    
+    .dark .nav-menu li a {
+        border-top: 1px solid #292929;
+        color: #fff;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

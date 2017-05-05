@@ -1,0 +1,33 @@
+.selected:after, .slidemenu-close, .widget-title:before, .widget-tags ul li a:hover, .center-title:before, .left-title:before, .giggs_button, .giggs_button2, .info-title::after, .rounded-icon i, .owl-theme .owl-controls .owl-page.active span, .owl-theme .owl-controls.clickable .owl-page:hover span, .backtop:hover, .audio-on .music-wave, .slidemenu-close {
+	background: #ff423a;
+}
+
+
+nav ul li a:after, .skill-list .progress .percentage {
+    background-color: #ff423a;
+}
+
+nav ul li a:hover, .profile-name, .widget-posts .sidebar-posts .tags a, .widget-categories ul li a:hover, .widget-categories li a:hover:after, .tweet li a,
+.widget-twitter a.twitter-account:hover, .blog-content .blog-data, .blog-comments .comments .comment-info a:hover, .works-info ul.works-informations li span, .feature i, .info-date{
+	color: #ff423a;
+}
+
+.widget-tags ul li a:hover, blockquote, .contact-info i, .uil-ripple-css div:nth-of-type(1), .uil-ripple-css div:nth-of-type(2){
+    border-color:#ff423a;
+}
+
+.pricing, .blog-info, .testimonial{
+    border-bottom: 3px solid #ff423a;
+}
+
+.select-cat{
+    color:#ff423a !important;
+}
+
+.blog-media i {
+    background-color: rgba(255, 66, 58, 0.85);
+}
+
+.accordion .panel .panel-heading a i {
+    color: #ff423a;
+}
