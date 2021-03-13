@@ -1,283 +1,316 @@
-'use strict';
-$(window).on("load", function() {
+/*
+* Template Name: BreezyCV - Resume / CV / vCard / Portfolio Template
+* Author: LMPixels
+* Author URL: http://themeforest.net/user/lmpixels
+* Version: 1.3.0
+*/
 
+(function($) {
+"use strict";
+    // Portfolio subpage filters
+    function portfolio_init() {
+        var portfolio_grid = $('.portfolio-grid'),
+            portfolio_filter = $('.portfolio-filters');
+            
+        if (portfolio_grid) {
 
- //PRELOADER
- $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
-
-
-if ($('.isotope_items').length) {
-
-    // PORTFOLIO ISOTOPE
-     var $container = $('.isotope_items');
-     $container.isotope();
-
-    $('.portfolio_filter ul li').on("click", function(){
-        $(".portfolio_filter ul li").removeClass("select-cat");
-        $(this).addClass("select-cat");
-        var selector = $(this).attr('data-filter');
-        $(".isotope_items").isotope({
-            filter: selector,
-    });
-        return false;
-    });
-
-}
-
-
-        // WOW JS
-    if ($('.wow').length) {
-        new WOW({ mobile: false }).init();
-    }
-
-}); // window load end
-
-
-
-    $(document).on("ready", function() {
-
-
-
-        // SWITCHER OPEN
-		$('.color-switcher .open').on("click", function() {
-			$('.color-switcher').toggleClass("open-switcher");
-		});
-
-
-    // ONE PAGE SCROLL
-    if ($('.home').length) {
-        $(document).on("scroll", onScroll);
-        //smoothscroll
-        $('.backtop, .home-down, .nav-menu li a[href^="#"]').on('click', function (e) {
-            e.preventDefault();
-            $(document).off("scroll");
-            $('.nav-menu li a').each(function () {
-                $(this).removeClass('selected');
-                if ($(window).width() < 768) {
-                    $('.nav-menu').slideUp();
-                }
-            })
-            $(this).addClass('selected');
-            var target = this.hash
-                , //  menu = target;
-                $target = $(target);
-            $('html, body').stop().animate({
-                'scrollTop': $target.offset().top - 70
-            }, 500, 'swing', function () {
-                window.location.hash = target;
-                $(document).on("scroll", onScroll);
+            portfolio_grid.shuffle({
+                speed: 450,
+                itemSelector: 'figure'
             });
-        });
 
-        function onScroll(event) {
-            var scrollPos = $(document).scrollTop();
-            $('.nav-menu li a').each(function () {
-                var currLink = $(this);
-                var refElement = $(currLink.attr("href"));
-                if (refElement.position().top - 73 <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
-                    $('.nav-menu li a').removeClass("selected");
-                    currLink.addClass("selected");
-                }
-                else {
-                    currLink.removeClass("selected");
-                }
+            portfolio_filter.on("click", ".filter", function (e) {
+                portfolio_grid.shuffle('update');
+                e.preventDefault();
+                $('.portfolio-filters .filter').parent().removeClass('active');
+                $(this).parent().addClass('active');
+                portfolio_grid.shuffle('shuffle', $(this).attr('data-group') );
+            });
+
+        }
+    }
+    // /Portfolio subpage filters
+
+
+    // Hide Mobile menu
+    function mobileMenuHide() {
+        var windowWidth = $(window).width(),
+            siteHeader = $('#site_header');
+
+        if (windowWidth < 1025) {
+            siteHeader.addClass('mobile-menu-hide');
+            $('.menu-toggle').removeClass('open');
+            setTimeout(function(){
+                siteHeader.addClass('animate');
+            }, 500);
+        } else {
+            siteHeader.removeClass('animate');
+        }
+    }
+    // /Hide Mobile menu
+
+    // Custom scroll
+    function customScroll() {
+        var windowWidth = $(window).width();
+        if (windowWidth > 1024) {
+            $('.animated-section, .single-page-content').each(function() {
+                $(this).perfectScrollbar();
+            });
+        } else {
+            $('.animated-section, .single-page-content').each(function() {
+                $(this).perfectScrollbar('destroy');
             });
         }
     }
+    // /Custom scroll
 
+    // Contact form validator
+    $(function () {
 
-    //NAVBAR SHOW - HIDE
-    if ($('.home').length) {
-        $(window).scroll(function () {
-            var scroll = $(window).scrollTop();
-            var homeheight = $(".home").height() - 73;
-            if (scroll > homeheight) {
-                $("header").addClass("nav-fixed");
-            }
-            else {
-                $("header").removeClass("nav-fixed");
-            }
-        });
-    }
+        $('#contact_form').validator();
 
+        $('#contact_form').on('submit', function (e) {
+            if (!e.isDefaultPrevented()) {
+                var url = "contact_form/contact_form.php";
 
-    // HOME PAGE HEIGHT
-    if ($('.home').length) {
-        function centerInit() {
-            var hometext = $('.home')
-            hometext.css({
-                "height": $(window).height() + "px"
-            });
-        }
-        centerInit();
-        $(window).resize(centerInit);
-    }
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: $(this).serialize(),
+                    success: function (data)
+                    {
+                        var messageAlert = 'alert-' + data.type;
+                        var messageText = data.message;
 
-
-    //SLIDE MENU
-    if ($('.right-menu').length) {
-    (function ($) {
-        $(".right-menu").on('click', function () {
-            $("body").hasClass("slidemenu-opened") ? k() : T()
-        });
-    })(jQuery);
-
-    function T() {
-        $("body").addClass("slidemenu-opened")
-    }
-
-    function k() {
-        $("body").removeClass("slidemenu-opened")
-    }
-    }
-
-
-        // RESPONSIVE MENU
-       if ($('.responsive').length) {
-           $('.responsive').on('click', function (e) {
-               $('.nav-menu').slideToggle();
-           });
-       }
-
-
-    // CUSTOM SCROLLBAR
-    if ($('.scroll-out, .nav-scroll').length) {
-        $(function () {
-            $('.scroll-out, .nav-scroll').perfectScrollbar({
-                suppressScrollX: true
-                , wheelSpeed: 100
-            });
-        });
-    }
-
-
-
-    // HOME TYPED JS
-    if ($('.element').length) {
-        $('.element').each(function () {
-            $(this).typed({
-                strings: [$(this).data('text1'), $(this).data('text2'), $(this).data('text3')],
-                loop: $(this).data('loop') ? $(this).data('loop') : false ,
-                backDelay: $(this).data('backdelay') ? $(this).data('backdelay') : 2000 ,
-                typeSpeed: 10,
-            });
-        });
-    }
-
-
-    // OWL CAROUSEL GENERAL JS
-    if ($('.owl-carousel').length) {
-        $('.owl-carousel').each(function () {
-            $(this).owlCarousel({
-                items: $(this).data('items') ? $(this).data('items') : 3
-                , autoPlay: $(this).data('autoplay') ? $(this).data('autoplay') : 2500
-                , pagination: $(this).data('pagination') ? $(this).data('pagination') : false
-                , itemsDesktop: [1199, 3]
-                , itemsDesktopSmall: [979, 3]
-            });
-        });
-    }
-
-
-    // BLOG GALLERY
-    if ($('.carousel').length) {
-        $('.carousel').carousel({
-            interval: 3000
-        })
-    }
-
-
-
-
-// MAGNIFIC POPUP FOR PORTFOLIO PAGE
-if ($('.image-link').length) {
-    $('.image-link').magnificPopup({
-        type: 'image'
-    });
-}
-
-//TWITTER
-if ($('.widget-twitter .tweet').length) {
-$('.widget-twitter .tweet').twittie({
-    username: 'envato'
-    , list: null
-    , dateFormat: '%B %d, %Y'
-    , template: '{{tweet}} <br/> <strong class="date">{{date}}</strong>'
-    , count: 3
-
-});
-    }
-
-
-    // ACCORDION MENU
-    $('.panel-heading a').on('click', function (e) {
-        $('.panel-heading a i').addClass('fa-chevron-down');
-        if ($(this).hasClass('collapsed') === true) {
-            $(this).children('i').removeClass('fa-chevron-down').addClass('fa-chevron-up');
-        }
-        else {
-            $(this).children('i').removeClass('fa-chevron-up');
-        }
-    });
-
-
-
-
-}); // document ready end
-
-
-
-
-
-
-/* Contact Form JS*/
-(function ($) {
-    'use strict';
-    if ($('.contact-form').length) {
-        $(".contact-form").on('submit', function (e) {
-            e.preventDefault();
-            var uri = $(this).attr('action');
-            $("#con_submit").val('Wait...');
-            var con_name = $("#con_name").val();
-            var con_email = $("#con_email").val();
-            var con_message = $("#con_message").val();
-            var required = 0;
-            $(".requie", this).each(function () {
-                if ($(this).val() == '') {
-                    $(this).addClass('reqError');
-                    required += 1;
-                }
-                else {
-                    if ($(this).hasClass('reqError')) {
-                        $(this).removeClass('reqError');
-                        if (required > 0) {
-                            required -= 1;
+                        var alertBox = '<div class="alert ' + messageAlert + ' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' + messageText + '</div>';
+                        if (messageAlert && messageText) {
+                            $('#contact_form').find('.messages').html(alertBox);
+                            $('#contact_form')[0].reset();
                         }
                     }
-                }
-            });
-            if (required === 0) {
-                $.ajax({
-                    type: "POST"
-                    , url: 'mail.php'
-                    , data: {
-                        con_name: con_name
-                        , con_email: con_email
-                        , con_message: con_message
-                    }
-                    , success: function (data) {
-                        $(".contact-form input, .contact-form textarea").val('');
-                        $("#con_submit").val('Done!');
-                        $("#con_submit").addClass("ok");
-                    }
+                });
+                return false;
+            }
+        });
+    });
+    // /Contact form validator
+
+    //On Window load & Resize
+    $(window)
+        .on('load', function() { //Load
+            // Animation on Page Loading
+            $(".preloader").fadeOut( 800, "linear" );
+
+            // initializing page transition.
+            var ptPage = $('.animated-sections');
+            if (ptPage[0]) {
+                PageTransitions.init({
+                    menu: 'ul.main-menu',
                 });
             }
-            else {
-                $("#con_submit").val('Failed!');
+        })
+        .on('resize', function() { //Resize
+             mobileMenuHide();
+             $('.animated-section').each(function() {
+                $(this).perfectScrollbar('update');
+            });
+            customScroll();
+        });
+
+
+    // On Document Load
+    $(document).on('ready', function() {
+        var movementStrength = 23;
+        var height = movementStrength / $(document).height();
+        var width = movementStrength / $(document).width();
+        $("body").on('mousemove', function(e){
+            var pageX = e.pageX - ($(document).width() / 2),
+                pageY = e.pageY - ($(document).height() / 2),
+                newvalueX = width * pageX * -1,
+                newvalueY = height * pageY * -1,
+                elements = $('.lm-animated-bg');
+
+            elements.addClass('transition');
+            elements.css({
+                "background-position": "calc( 50% + " + newvalueX + "px ) calc( 50% + " + newvalueY + "px )",
+            });
+
+            setTimeout(function() {
+                elements.removeClass('transition');
+            }, 300);
+        })
+
+        // Mobile menu
+        $('.menu-toggle').on("click", function () {
+            $('#site_header').addClass('animate');
+            $('#site_header').toggleClass('mobile-menu-hide');
+            $('.menu-toggle').toggleClass('open');
+        });
+
+        // Mobile menu hide on main menu item click
+        $('.main-menu').on("click", "a", function (e) {
+            mobileMenuHide();
+        });
+
+        // Sidebar toggle
+        $('.sidebar-toggle').on("click", function () {
+            $('#blog-sidebar').toggleClass('open');
+        });
+
+        // Initialize Portfolio grid
+        var $portfolio_container = $(".portfolio-grid");
+        $portfolio_container.imagesLoaded(function () {
+            portfolio_init(this);
+        });
+
+        // Blog grid init
+        var $container = $(".blog-masonry");
+        $container.imagesLoaded(function(){
+            $container.masonry();
+        });
+
+        customScroll();
+
+        // Text rotation
+        $('.text-rotation').owlCarousel({
+            loop: true,
+            dots: false,
+            nav: false,
+            margin: 0,
+            items: 1,
+            autoplay: true,
+            autoplayHoverPause: false,
+            autoplayTimeout: 3800,
+            animateOut: 'animated-section-scaleDown',
+            animateIn: 'animated-section-scaleUp'
+        });
+
+        // Testimonials Slider
+        $(".testimonials.owl-carousel").owlCarousel({
+            nav: true, // Show next/prev buttons.
+            items: 3, // The number of items you want to see on the screen.
+            loop: false, // Infinity loop. Duplicate last and first items to get loop illusion.
+            navText: false,
+            autoHeight: true,
+            margin: 25,
+            responsive : {
+                // breakpoint from 0 up
+                0 : {
+                    items: 1,
+                },
+                // breakpoint from 480 up
+                480 : {
+                    items: 1,
+                },
+                // breakpoint from 768 up
+                768 : {
+                    items: 2,
+                },
+                1200 : {
+                    items: 2,
+                }
             }
         });
-        $(".requie").keyup(function () {
-            $(this).removeClass('reqError');
+
+        // Clients Slider
+        $(".clients.owl-carousel").imagesLoaded().owlCarousel({
+            nav: true, // Show next/prev buttons.
+            items: 2, // The number of items you want to see on the screen.
+            loop: false, // Infinity loop. Duplicate last and first items to get loop illusion.
+            navText: false,
+            margin: 10,
+            autoHeight: true,
+            responsive : {
+                // breakpoint from 0 up
+                0 : {
+                    items: 2,
+                },
+                // breakpoint from 768 up
+                768 : {
+                    items: 4,
+                },
+                1200 : {
+                    items: 5,
+                }
+            }
         });
-    }
+
+
+        //Form Controls
+        $('.form-control')
+            .val('')
+            .on("focusin", function(){
+                $(this).parent('.form-group').addClass('form-group-focus');
+            })
+            .on("focusout", function(){
+                if($(this).val().length === 0) {
+                    $(this).parent('.form-group').removeClass('form-group-focus');
+                }
+            });
+
+        // Lightbox init
+        $('body').magnificPopup({
+            delegate: 'a.lightbox',
+            type: 'image',
+            removalDelay: 300,
+
+            // Class that is added to popup wrapper and background
+            // make it unique to apply your CSS animations just to this exact popup
+            mainClass: 'mfp-fade',
+            image: {
+                // options for image content type
+                titleSrc: 'title',
+                gallery: {
+                    enabled: true
+                },
+            },
+
+            iframe: {
+                markup: '<div class="mfp-iframe-scaler">'+
+                        '<div class="mfp-close"></div>'+
+                        '<iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe>'+
+                        '<div class="mfp-title mfp-bottom-iframe-title"></div>'+
+                      '</div>', // HTML markup of popup, `mfp-close` will be replaced by the close button
+
+                patterns: {
+                    youtube: {
+                      index: 'youtube.com/', // String that detects type of video (in this case YouTube). Simply via url.indexOf(index).
+
+                      id: null, // String that splits URL in a two parts, second part should be %id%
+                      // Or null - full URL will be returned
+                      // Or a function that should return %id%, for example:
+                      // id: function(url) { return 'parsed id'; }
+
+                      src: '%id%?autoplay=1' // URL that will be set as a source for iframe.
+                    },
+                    vimeo: {
+                      index: 'vimeo.com/',
+                      id: '/',
+                      src: '//player.vimeo.com/video/%id%?autoplay=1'
+                    },
+                    gmaps: {
+                      index: '//maps.google.',
+                      src: '%id%&output=embed'
+                    }
+                },
+
+                srcAction: 'iframe_src', // Templating object key. First part defines CSS selector, second attribute. "iframe_src" means: find "iframe" and set attribute "src".
+            },
+
+            callbacks: {
+                markupParse: function(template, values, item) {
+                 values.title = item.el.attr('title');
+                }
+            },
+        });
+
+        //Google Maps
+        $("#map").googleMap({
+            zoom: 16 // Google Map ZOOM. You can change this value
+        });
+        $("#map").addMarker({
+            address: "S601 Townsend Street, San Francisco, California, USA", // Your Address. Change it
+        });
+    });
+
 })(jQuery);
